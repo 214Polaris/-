@@ -1,6 +1,6 @@
 # Social Practice Platform
 
-![](https://img.shields.io/badge/Star-8-yellow) ![](https://img.shields.io/badge/SpringBoot-3.2.5-red) ![](https://img.shields.io/badge/MyBatis-3.0.3-orange)
+![](https://img.shields.io/badge/Star-8-yellow) ![](https://img.shields.io/badge/SpringBoot-3.2.5-red) ![](https://img.shields.io/badge/MyBatis-3.0.3-orange) ![](https://img.shields.io/badge/WeChatDeveloperTool-Stable-green) ![](https://img.shields.io/badge/TDesign-Stable-blue)
 
 This project is a backend service repository based on Java and Spring Boot, focused on providing demand-matching functionality between communities and university task forces.
 
@@ -46,4 +46,4 @@ A big shout out to all the contributers, more specifically to these guys
 if port 3306 is occupied, run the command below:
 
 `netstat -ano | findstr :3306`
-`taskkill /PID {对应进程号} /F`
+`taskkill /PID (i.e., process id) /F`
