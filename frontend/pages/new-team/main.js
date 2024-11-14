@@ -55,8 +55,8 @@ global.webpackJsonpMpvue([10], {
       /* hot reload */
       if (false) {
         (function () {
-          var hotAPI = require("../noti-uni/node_modules/vue-hot-reload-api")
-          hotAPI.install(require("../noti-uni/node_modules/vue"), false)
+          var hotAPI = require("vue-hot-reload-api")
+          hotAPI.install(require("vue"), false)
           if (!hotAPI.compatible) return
           module.hot.accept()
           if (!module.hot.data) {
@@ -327,7 +327,6 @@ global.webpackJsonpMpvue([10], {
           };
         },
         onLoad: function onLoad(options) {
-          //console.log(options.TeamID);
           // this.fetchShowData(options.comID) // 根据社区ID去找对应的show中的数据后端接口！
         },
         mounted: function mounted() {
@@ -337,10 +336,7 @@ global.webpackJsonpMpvue([10], {
 
         methods: {
           bindNameFocus: function bindNameFocus() {
-            //console.log(this.data.isSearchListShow);
-            //console.log('focusssss');
             this.data.isSearchListShow = true;
-            //console.log(this.data.isSearchListShow);
           },
           bindNameChange: function bindNameChange(item) {
             var name = item.name;
@@ -348,8 +344,6 @@ global.webpackJsonpMpvue([10], {
             this.data.selectedName = name;
             this.data.isSearchListShow = false;
             this.data.selectedId = id;
-            //console.log(this.data.selectedName);
-            //console.log(this.data.selectedId);
           },
           bindInput: function bindInput(e) {
             var keyword = e.target.value.toLowerCase();
@@ -358,8 +352,6 @@ global.webpackJsonpMpvue([10], {
               return reg.test(item.name.toLowerCase());
             });
             this.data.matchedNameList = matchedNameList;
-            //console.log(matchedNameList);
-            //console.log('--------------------');
           },
           initAreaData: function initAreaData() {
             this.data.faculties = this.getOptions(this.areaList.faculties);
@@ -368,7 +360,6 @@ global.webpackJsonpMpvue([10], {
           fetchClassiData: function fetchClassiData() {
             var token = wx.getStorageSync('token');
             var that = this;
-            //console.log(token);
             wx.request({
               url: 'http://120.78.1.231:8084/api/tags/all',
               method: 'GET',
@@ -377,7 +368,6 @@ global.webpackJsonpMpvue([10], {
               },
               success: function success(res) {
                 if (res.statusCode === 200) {
-                  //console.log('数据获取成功:', res.data);
                   that.data.current = res.data.tags.map(function (tag) {
                     return { value: tag.id.toString() };
                   });

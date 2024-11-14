@@ -54,7 +54,6 @@ Page({
       },
       success: (res) => {
         const data = res.data;
-        //console.log(data);
         let imglist = [];
         let imgSrc = [];
         let imgflagObj = null;
@@ -78,7 +77,6 @@ Page({
             imgSrc.push(obj)
           }
         }
-        // //console.log(imgSrc)
         let comment_list = [];
         if (data.comment_list != undefined && data.comment_list.length > 0) {
           data.comment_list.forEach(function (comment) {
@@ -145,7 +143,6 @@ Page({
     });
   },
   onHandleLike(e) {
-    console.log(wx.getStorageSync('userName'))
     if (timer) {
       clearTimeout(timer);
     }
@@ -176,7 +173,6 @@ Page({
         "kudos_time": this.getTime(),
         "like": !this.data.unlike_flag
       });
-      //console.log(data);
       wx.request({
         url: 'http://120.78.1.231:8084/api/res/update_like',
         method: 'POST',
@@ -187,13 +183,11 @@ Page({
           'Upgrade': 'h2c'
         },
         success: (res) => {
-          //console.log(JSON.stringify(res.data));
         }
       });
     }, debounceDelay);
   },
   onSubmit() {
-    //console.log(this.data.newcom);
     let newcom = [];
     newcom.push({
       user_name: wx.getStorageSync('userName'),
@@ -253,7 +247,6 @@ Page({
     }
 
     let img = this.data.imageSrc;
-    //console.log(img);
 
     // 创建一个 Promise 数组
     const promises = imgReq.map(item => this.getImageData(item));

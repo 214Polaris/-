@@ -25,7 +25,6 @@ Page({
         'Upgrade': 'h2c'
       },
       success(res) {
-        //console.log(res.data);
         const data = res.data;
         let demandlist = [];
         for (let i = 0; i < data.length; i++) {
@@ -51,7 +50,6 @@ Page({
     let res_no = ''
     if (this.data.post_list.length != 0)
       res_no = parseInt(this.data.post_list[this.data.post_list.length - 1].post_id) + 1
-    //console.log(res_no)
     wx.request({
       url: 'http://120.78.1.231:8084/api/community/moment?gov_id=' + this.data.gov_id + '&res_no=' + res_no,
       header: {
@@ -59,8 +57,6 @@ Page({
         'Upgrade': 'h2c'
       },
       success(res) {
-        //console.log(res.data);
-
         const data2 = res.data;
         let postlist = that.data.post_list;
         if (postlist.length < 2)
@@ -84,7 +80,6 @@ Page({
           }
           postlist.push(obj);
         }
-        //console.log(postlist);
         that.setData({
           post_list: postlist
         })
@@ -106,7 +101,6 @@ Page({
           'Upgrade': 'h2c'
         },
         success(res) {
-          //console.log(res.data);
           const data3 = res.data.proj_list
           let proj_list = []
           for (let i = 0; i < data3.length; i++) {
@@ -127,24 +121,7 @@ Page({
     }
   },
 
-  onTabsClick(event) {
-    switch (event.detail.value) {
-      case "0":
-        //console.log("000");
-        //服务器读取需求清单
-        break;
-      case "1":
-        //console.log("111");
-        //服务器读取结对动态
-        break;
-      case "2":
-        //console.log("222");
-        //服务器读取结对项目
-        break;
-    }
-  },
   onClickDemand(e) {
-    //console.log(e.currentTarget.dataset);
     let demand = e.currentTarget.dataset.demand;
     let obj = {
       demand_id: demand.demand_id,
@@ -158,7 +135,6 @@ Page({
   },
   onClickResult(e) {
     //跳转成果详情页
-    //console.log(e.currentTarget.dataset.post);
     let post = e.currentTarget.dataset.post;
     wx.navigateTo({
       url: '/pages/result-detail/result-detail?id=' + post.post_id + '&name=' + post.post_title,
@@ -166,7 +142,6 @@ Page({
   },
   onClickTeamed(e) {
     //跳转结对详情页
-    //console.log(e.currentTarget.dataset.proj);
     let proj = e.currentTarget.dataset.proj;
     let obj = {
       proj_id: proj.team_id,

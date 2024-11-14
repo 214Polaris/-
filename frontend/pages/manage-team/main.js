@@ -260,7 +260,6 @@ if (false) {(function () {
   },
   onLoad: function onLoad(options) {
     this.teamID = options.TeamID;
-    //console.log('队伍ID', this.teamID);
   },
 
   computed: {
@@ -286,7 +285,6 @@ if (false) {(function () {
     },
     changeUserNameHandle: function changeUserNameHandle(e) {
       this.NewUserName = e.target.value;
-      //console.log(this.NewUserName);
     },
     SexChange: function SexChange(e) {
       if (e.target.value === 1) {
@@ -321,7 +319,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('删除成功', res.data);
             that.deleteVisible = false;
             that.fetchData();
             that.currentPersonId = null;
@@ -351,10 +348,8 @@ if (false) {(function () {
       this.currentPersonUName = '';
     },
     confirmAdd: function confirmAdd() {
-      //console.log('添加');
       var that = this;
       var token = wx.getStorageSync('token');
-      //console.log(token);
       wx.request({
         url: 'http://120.78.1.231:8084/api/team/addMember?TeamID=' + this.teamID + '&userName=' + this.NewUserName,
         method: 'POST',
@@ -364,7 +359,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log(res.data);
             that.fetchData();
             that.addVisible = false;
             that.currentPersonId = null;
@@ -407,7 +401,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('查询', res.data);
             that.newCollege = res.data.college;
             that.newName = res.data.Name;
             that.newhasJoinOther = res.data.hasJoinOther;
@@ -423,8 +416,6 @@ if (false) {(function () {
     fetchData: function fetchData() {
       var token = wx.getStorageSync('token');
       var that = this;
-      //console.log(token);
-      //console.log('1111111');
       wx.request({
         url: 'http://120.78.1.231:8084/api/team/members',
         method: 'GET',
@@ -436,7 +427,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('数据获取成功:', res.data);
             that.people = res.data;
           } else {
             console.error('请求成功但数据获取失败:', res);

@@ -29,7 +29,6 @@ Page({
         'Upgrade': 'h2c'
       },
       success(res) {
-        // //console.log(res.data);
         const demand = res.data.demand_list;
         let demandList = [];
         for (let i = 0; i < demand.length; i++) {
@@ -65,7 +64,6 @@ Page({
         'Upgrade': 'h2c'
       },
       success(res) {
-        // //console.log(res.data);
         const demand = res.data.demand_list;
         let demandList = that.data.demand_list;
         if (demand.length < 5)
@@ -87,12 +85,10 @@ Page({
         that.setData({
           demand_list: demandList
         })
-        // //console.log(that.data.demand_list)
       }
     })
   },
   onClickDemand(e) {
-    // //console.log(e.currentTarget.dataset.demand);
     let demand = e.currentTarget.dataset.demand;
     let obj = {
       demand_id: demand.demand_id,

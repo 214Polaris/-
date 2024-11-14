@@ -296,8 +296,6 @@ if (false) {(function () {
       this.value = '';
     },
     confirmName: function confirmName() {
-      //console.log(this.NewName);
-      //console.log(this.unReturn);
       this.Namevisible = false;
       this.NewName = '';
     },
@@ -324,8 +322,6 @@ if (false) {(function () {
         this.visible = false;
       } else {
         this.currentPersonId = personId;
-        //console.log(this.currentPersonId);
-        //console.log('3333333333');
         this.visible = true;
         this.isedit = true;
         this.popupTitle = '修改社区负责人';
@@ -340,7 +336,6 @@ if (false) {(function () {
       this.currentPersonId = null;
       this.isedit = false;
       this.popupTitle = '添加新的社区负责人';
-      //console.log('tianjitianji');
     },
     addComLeader: function addComLeader() {
       this.addVisible = true;
@@ -352,12 +347,8 @@ if (false) {(function () {
       this.NewSex = 0;
       this.isedit = false;
       this.popupTitle = '添加新的社区负责人';
-      //console.log('tianjitianji');
     },
     confirmAdd: function confirmAdd() {
-      //console.log(this.NewName);
-      //console.log(this.NewPhone);
-      //console.log(this.NewSex);
       var pattern = /^1[3-9]\d{9}$/;
       if (this.NewName === '') {
         this.showWarningToast('请输入社区负责人姓名');
@@ -370,12 +361,6 @@ if (false) {(function () {
         var that = this;
         var token = wx.getStorageSync('token');
         if (this.isedit) {
-          //console.log('修改社区负责人');
-          //console.log(this.NewName);
-          //console.log(this.NewPhone);
-          //console.log(this.NewSex);
-          //console.log(this.currentPersonId);
-          //console.log(parseInt(this.currentPersonId, 10));
           wx.request({
             url: 'http://120.78.1.231:8084/api/committee/modify/community/leader',
             method: 'POST',
@@ -391,7 +376,6 @@ if (false) {(function () {
             },
             success: function success(res) {
               if (res.statusCode === 200) {
-                //console.log(res.data);
                 that.fetchData();
                 that.isedit = false;
                 that.popupTitle = '添加新的社区负责人';
@@ -409,10 +393,6 @@ if (false) {(function () {
             }
           });
         } else {
-          //console.log('添加');
-          //console.log(this.NewName);
-          //console.log(this.NewPhone);
-          //console.log(this.NewSex);
           var _that = this;
           var nameSend = this.NewName;
           var phoneSend = this.NewPhone;
@@ -428,10 +408,6 @@ if (false) {(function () {
             },
             success: function success(res) {
               if (res.statusCode === 200) {
-                //console.log('----------');
-                //console.log(nameSend);
-                //console.log(phoneSend);
-                //console.log(res.data);
                 wx.request({
                   url: 'http://120.78.1.231:8084/api/register',
                   method: 'POST',
@@ -449,7 +425,6 @@ if (false) {(function () {
                   },
                   success: function success(res2) {
                     if (res2.statusCode === 200) {
-                      //console.log(res.data);
                       _that.fetchData();
                       _that.isedit = false;
                       _that.popupTitle = '添加新的社区负责人';
@@ -505,8 +480,6 @@ if (false) {(function () {
     fetchData: function fetchData() {
       var token = wx.getStorageSync('token');
       var that = this;
-      //console.log(token);
-      //console.log('1111111');
       wx.request({
         url: 'http://120.78.1.231:8084/api/committee/community/leaders',
         method: 'GET',
@@ -515,7 +488,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('数据获取成功:', res.data);
             that.people = res.data.map(function (person) {
               var cleanedImg = person.img.replace(/(\r\n|\n|\r)/gm, '');
               var imageSrc = 'data:image/jpeg;base64,' + cleanedImg;

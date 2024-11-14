@@ -2,6 +2,7 @@ page {
   background-color: #f6f6f6;
   height: 100%;
 }
+
 .main {
   width: 100%;
   box-sizing: border-box;
@@ -11,27 +12,54 @@ page {
   padding-bottom: 240rpx;
   position: absolute;
 }
+
 /* 使得标签栏一直悬浮在底部 */
 .scroll {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 100rpx; /* 设置标签栏的高度 */
-  background-color: #fff; /* 设置标签栏的背景颜色 */
+  height: 100rpx;
+  /* 设置标签栏的高度 */
+  background-color: #fff;
+  /* 设置标签栏的背景颜色 */
 }
+
 .background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 28%;
-  background-color: #fff; 
+  background-color: #fff;
   z-index: -1;
 }
+
+.cardTitle {
+  color: rgb(121, 6, 12);
+  flex: 1;
+  font-size: 29rpx;
+  font-weight: bold;
+  margin-left: 40rpx;
+  margin-top: 10rpx;
+  position: relative;
+}
+
+.cardTitle2 {
+  color: rgb(121, 6, 12);
+  flex: 1;
+  font-size: 29rpx;
+  font-weight: bold;
+  margin-left: 40rpx;
+  margin-top: 16rpx;
+  left: -2rpx;
+  top: 14rpx;
+  position: relative;
+}
+
 /* 卡片的样式 */
-.card{
-  /*卡片的宽度*/  
+.card {
+  /*卡片的宽度*/
   width: 100%;
   /*左外边距，这里代表距离最左边的距离*/
   margin-left: 0%;
@@ -56,10 +84,12 @@ page {
   padding-left: 16rpx;
   padding-right: 16rpx;
 }
+
 .title-icon {
   width: 296rpx;
   height: 80rpx;
 }
+
 .desc {
   color: rgba(0, 0, 0, 0.4);
   margin-top: 32rpx;
@@ -70,4 +100,3 @@ page {
   padding-left: 16rpx;
   padding-right: 16rpx;
 }
-

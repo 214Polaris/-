@@ -6156,7 +6156,6 @@ function diffLog (updateData) {
     Vue$3._mpvueTraceTimer = setTimeout(function () {
       clearTimeout(Vue$3._mpvueTraceTimer);
       updateDataTotal = (updateDataTotal / 1024).toFixed(1);
-      //console.log('这次操作引发500ms内数据更新量:' + updateDataTotal + 'kb');
       Vue$3._mpvueTraceTimer = 0;
       updateDataTotal = 0;
     }, 500);
@@ -6204,7 +6203,7 @@ function compareAndSetDeepData (key, newData, vm, data, forceUpdate) {
       });
     }
   } catch (e) {
-    //console.log(e, key, newData, vm);
+
   }
 }
 
@@ -6256,7 +6255,7 @@ function minifyDeepData (rootKey, originKey, vmData, data, _mpValueSet, vm) {
       def(vmData, '__newReference', false, false);
     }
   } catch (e) {
-    //console.log(e, rootKey, originKey, vmData, data);
+
   }
 }
 
@@ -6282,7 +6281,7 @@ function diffData (vm, data) {
   Vue$3.nextTick(function () {
     cleanKeyPath(vm);
   });
-  // //console.log(rootKey)
+
 
   // 值类型变量不考虑优化，还是直接更新
   var __keyPathOnThis = vmData.__keyPath || vm.__keyPath || {};
@@ -6330,8 +6329,6 @@ function diffData (vm, data) {
     vm._mpValueSet = 'done';
   }
   if (Vue$3.config._mpTrace) {
-    // //console.log('更新VM节点', vm)
-    // //console.log('实际传到Page.setData数据', data)
     diffLog(data);
   }
 }

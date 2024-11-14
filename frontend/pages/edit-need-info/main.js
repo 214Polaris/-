@@ -468,9 +468,7 @@ if (false) {(function () {
     };
   },
   onLoad: function onLoad(options) {
-    console.log('进来了进来了');
     this.fetchNeedData(options.NeedId);
-    console.log(options.NeedId);
     this.NeedId = options.NeedId;
   },
   mounted: function mounted() {
@@ -481,11 +479,9 @@ if (false) {(function () {
     onAreaPicker: function onAreaPicker() {
       // this.data.areaVisible = true
       var that = this;
-      console.log('点击地址');
       wx.chooseLocation({
         success: function success(res) {
           // success
-          console.log(res, 'location');
           // that.wd = res.latitude
           // that.jd = res.longitude
           // that.address = res.address
@@ -504,7 +500,6 @@ if (false) {(function () {
     },
     fetchNeedData: function fetchNeedData(NeedId) {
       var token = wx.getStorageSync('token');
-      console.log('getNeed');
       var that = this;
       wx.request({
         url: 'http://120.78.1.231:8084/api/get/need?id=' + parseInt(NeedId, 10),
@@ -514,7 +509,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            console.log('数据获取成功:', res.data);
             that.title = res.data.title;
             that.Intro = res.data.introduction;
             that.Resource = res.data.resource;
@@ -528,7 +522,6 @@ if (false) {(function () {
             var videoItem = res.data.mediaList.find(function (item) {
               return item.type === 'video';
             });
-            console.log(videoItem);
             that.SetVideo(videoItem);
             var dataString = '';
             filteredMediaList.forEach(function (item) {
@@ -578,7 +571,6 @@ if (false) {(function () {
       var token = wx.getStorageSync('token');
       var that = this;
       that.OverlayVisible = true;
-      console.log('Clicked image index:', index);
       if (this.originFiles[index].isNew === 1) {
         this.currentImageUrl = this.originFiles[index].url;
         return;
@@ -609,7 +601,6 @@ if (false) {(function () {
     fetchClassiData: function fetchClassiData() {
       var token = wx.getStorageSync('token');
       var that = this;
-      console.log(token);
       wx.request({
         url: 'http://120.78.1.231:8084/api/tags/all',
         method: 'GET',
@@ -618,15 +609,12 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            console.log('数据获取成功:', res.data);
             that.data.current = res.data.tags.map(function (tag) {
               return { value: tag.id.toString() };
             });
             that.data.choose = res.data.tags.map(function (tag) {
               return { label: tag.name, value: tag.id.toString() };
             });
-            console.log(that.data.current);
-            console.log(that.data.choose);
           }
         },
         fail: function fail(error) {
@@ -647,7 +635,6 @@ if (false) {(function () {
     },
     handleGroupChange: function handleGroupChange(event) {
       var value = event.target.value;
-      console.log(value);
       if (value.length > 3) {
         this.showWarningToast('您选择的类别数量\n已到达上限！');
       }
@@ -682,18 +669,15 @@ if (false) {(function () {
         }
         resultString += '）';
         this.data.showTagName = resultString;
-        console.log(this.data.showTagName);
         __WEBPACK_IMPORTED_MODULE_3_babel_runtime_core_js_object_assign___default()(this.data.chosenTagName, result);
         this.data.visible = false;
         this.data.chosenTagId = this.data.current;
-        console.log(this.data.chosenTagId);
         this.data.current = [];
       }
     },
 
     // onChange (e) {
     //   this.product.value = e.target.value
-    //   console.log(this.product.value)
     // },
     showSuccessToast: function showSuccessToast(text) {
       Object(__WEBPACK_IMPORTED_MODULE_4_tdesign_miniprogram_miniprogram_npm_tdesign_miniprogram_toast_index__["a" /* default */])({
@@ -719,9 +703,6 @@ if (false) {(function () {
       if (this.initialAddress !== that.data.areaText) {
         this.hasChange = true;
       }
-      console.log('change', this.hasChange);
-      console.log(this.AddList);
-      console.log(this.DeleteList);
       this.DeleteList.forEach(function (item) {
         _this.handleDeleteImg(_this.NeedId, item.media_id);
       });
@@ -729,10 +710,7 @@ if (false) {(function () {
         _this.handleUpload(item.url, _this.NeedId);
       });
       if (this.changeVideo) {
-        console.log('传了视频');
-        console.log(this.Videopath);
         this.handleUploadVideo(this.Videopath).then(function () {
-          console.log('上传视频成功');
         }).catch(function (error) {
           console.error('上传失败:', error);
         });
@@ -785,18 +763,13 @@ if (false) {(function () {
       this.hasChange = true;
     },
     handleRemove: function handleRemove(index) {
-      console.log('Removed image index:', index);
       if (this.originFiles[index].isNew === 1) {
-        console.log('删除了刚添加的图片');
       } else {
-        console.log('删掉了图片', this.originFiles[index]);
         this.DeleteList.push(this.originFiles[index]);
       }
       this.originFiles.splice(index, 1);
     },
     uploadVideo: function uploadVideo(filePath) {
-      console.log(filePath);
-      console.log('上传视频:', filePath);
       var that = this;
       var token = wx.getStorageSync('token');
       wx.uploadFile({
@@ -814,7 +787,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            console.log('上传视频成功', res);
             that.showSuccessToast('已完成');
           } else {
             console.error('上传视频失败', res.data);
@@ -826,7 +798,6 @@ if (false) {(function () {
       });
     },
     ChangeVideo: function ChangeVideo() {
-      console.log('点击修改视频');
       var that = this;
       wx.chooseVideo({
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
@@ -852,7 +823,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            console.log('删除图片成功', res);
           } else {
             console.error('删除图片失败', res.data);
           }
@@ -930,7 +900,6 @@ if (false) {(function () {
       }))();
     },
     uploadFile: function uploadFile(fileObj, ReturnID) {
-      console.log('上传文件:', fileObj);
       var token = wx.getStorageSync('token');
       return new __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise___default.a(function (resolve, reject) {
         wx.uploadFile({
@@ -948,7 +917,6 @@ if (false) {(function () {
           },
           success: function success(res) {
             if (res.statusCode === 200) {
-              console.log('上传图片成功', res);
               var uploadId = res.header.id; // 提取res.header.id
               resolve(uploadId); // 成功时调用resolve并传递uploadId
             } else {
@@ -1007,9 +975,6 @@ if (false) {(function () {
     },
     handleAdd: function handleAdd(e) {
       // t-upload的files中的Files一定不能删！！！，同时要确保data中没有Files!!!
-      console.log('add');
-      console.log(e);
-      console.log(e.target.files[0]);
       var that = this;
       that.originFiles.push({
         url: e.target.files[0].url,
@@ -1017,7 +982,6 @@ if (false) {(function () {
         type: e.target.files[0].type,
         isNew: 1
       });
-      console.log('添加新图片', this.originFiles);
       that.AddList.push({
         url: e.target.files[0].url,
         name: e.target.files[0].name,

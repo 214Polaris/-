@@ -52,7 +52,6 @@ Page({
   
     makerclick(e){
       // 这是一个事件，在wxml中绑定这个事件，点击浮标后
-      //console.log(e.detail)
       const latitude = e.detail.latitude;
       const longitude = e.detail.longitude;
       let closestMarker = null;
@@ -71,14 +70,11 @@ Page({
     },
     //缩放到某个级别就把区的显示，恢复的时候就把市的显示
     dealScale(e){
-      //console.log(e)
     },
     onLoad(options) {
         const { path, q } = options;
-        //console.log(path);
         if (q) {
             const str = this.getQueryByUrl(decodeURIComponent(q));
-            //console.log(str, str.page);
             wx.navigateTo({
                 url: `/pages/${str.page}/${str.page}`,
             });
@@ -89,13 +85,10 @@ Page({
         wx.request({
           url: 'http://120.78.1.231:8084/api/get/community/count',
           success(res) {
-            //console.log("已经success");
-            //console.log(res.data)
             //const cityData = that.data.cityData;
             const apiResponse =res.data;
           
             apiResponse.forEach(responseObj => {
-              //console.log(responseObj)
               const [, cityName] = responseObj.city.split('广东省');
               const sum = responseObj.sum;
               that.data.cityData.forEach((cityObj, index) => {

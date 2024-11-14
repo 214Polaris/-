@@ -24,7 +24,6 @@ Page({
       method: 'GET',
       success: res => {
         if (res.statusCode === 200) {
-          //console.log('数据获取成功:', res.data)
           let tags=res.data.tags
           let opList=this.data.choose
           for(let i=0;i<tags.length;i++)
@@ -104,7 +103,6 @@ Page({
           }  
         }
       }
-      //console.log(result);
       this.setData({
         visible:false,
         chosenTagId:this.data.current,

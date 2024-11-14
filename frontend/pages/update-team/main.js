@@ -405,7 +405,6 @@ global.webpackJsonpMpvue([19], {
           };
         },
         onLoad: function onLoad(options) {
-          //console.log('队伍ID,', options.TeamID);
           this.fetchShowData(options.TeamID); // 根据社区ID去找对应的show中的数据后端接口！
         },
         mounted: function mounted() {
@@ -415,10 +414,7 @@ global.webpackJsonpMpvue([19], {
 
         methods: {
           bindNameFocus: function bindNameFocus() {
-            //console.log(this.data.isSearchListShow);
-            //console.log('focusssss');
             this.data.isSearchListShow = true;
-            //console.log(this.data.isSearchListShow);
           },
           bindNameChange: function bindNameChange(item) {
             var name = item.name;
@@ -426,8 +422,6 @@ global.webpackJsonpMpvue([19], {
             this.data.selectedName = name;
             this.data.isSearchListShow = false;
             this.data.selectedId = id;
-            //console.log(this.data.selectedName);
-            //console.log(this.data.selectedId);
           },
           bindInput: function bindInput(e) {
             var keyword = e.target.value.toLowerCase();
@@ -436,8 +430,6 @@ global.webpackJsonpMpvue([19], {
               return reg.test(item.name.toLowerCase());
             });
             this.data.matchedNameList = matchedNameList;
-            //console.log(matchedNameList);
-            //console.log('--------------------');
           },
           initAreaData: function initAreaData() {
             this.data.faculties = this.getOptions(this.areaList.faculties);
@@ -446,7 +438,6 @@ global.webpackJsonpMpvue([19], {
           fetchClassiData: function fetchClassiData() {
             var token = wx.getStorageSync('token');
             var that = this;
-            //console.log(token);
             wx.request({
               url: 'http://120.78.1.231:8084/api/tags/all',
               method: 'GET',
@@ -455,15 +446,12 @@ global.webpackJsonpMpvue([19], {
               },
               success: function success(res) {
                 if (res.statusCode === 200) {
-                  //console.log('数据获取成功:', res.data);
                   that.data.current = res.data.tags.map(function (tag) {
                     return { value: tag.id.toString() };
                   });
                   that.data.choose = res.data.tags.map(function (tag) {
                     return { label: tag.name, value: tag.id.toString() };
                   });
-                  //console.log(that.data.current);
-                  //console.log(that.data.choose);
                 }
               },
               fail: function fail(error) {
@@ -484,7 +472,6 @@ global.webpackJsonpMpvue([19], {
           },
           handleGroupChange: function handleGroupChange(event) {
             var value = event.target.value;
-            //console.log(value);
             if (value.length > 3) {
               this.showWarningToast('您选择的类别数量\n已到达上限！');
             }
@@ -519,11 +506,9 @@ global.webpackJsonpMpvue([19], {
               }
               resultString += '）';
               this.data.showTagName = resultString;
-              //console.log(this.data.showTagName);
               __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign___default()(this.data.chosenTagName, result);
               this.data.visible = false;
               this.data.chosenTagId = this.data.current;
-              //console.log(this.data.chosenTagId);
               this.data.current = [];
             }
           },
@@ -555,7 +540,6 @@ global.webpackJsonpMpvue([19], {
               },
               success: function success(res) {
                 if (res.statusCode === 200) {
-                  //console.log('数据获取成功:', res.data);
                   that.data.ClassiText = res.data.teacher;
                   that.data.areaText = res.data.academy;
                   that.show.intro = res.data.introduction;

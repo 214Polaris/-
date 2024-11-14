@@ -258,7 +258,6 @@ if (false) {(function () {
     // confirmDelete () {
     //   const that = this
     //   const token = wx.getStorageSync('token')
-    //   //console.log(this.currentclassiId)
     //   wx.request({
     //     url: `http://120.78.1.231:8084/api/tags/delete?id=${parseInt(this.currentclassiId, 10)}`,
     //     method: 'DELETE',
@@ -268,7 +267,6 @@ if (false) {(function () {
     //     },
     //     success: (res) => {
     //       if (res.statusCode === 200) {
-    //         //console.log('删除成功', res.data)
     //         that.visible = false
     //         that.fetchPeopleData()
     //         that.currentclassiId = null
@@ -296,15 +294,11 @@ if (false) {(function () {
     confirmEdit: function confirmEdit() {
       // 调用后端接口（EditClassid, EditClassivalue）
       if (this.EditClassivalue === '') {
-        //console.log('类别名字不能为空');
         this.showWarningToast('类别名字不能为空');
-        //console.log('类别名字不能为空');
         return;
       }
       var that = this;
       var token = wx.getStorageSync('token');
-      //console.log(this.EditClassid);
-      //console.log(this.EditClassivalue);
       wx.request({
         url: 'http://120.78.1.231:8084/api/tags/update?id=' + parseInt(this.EditClassid, 10) + '&newName=' + this.EditClassivalue,
         method: 'POST',
@@ -318,7 +312,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log(res.data);
             that.fetchPeopleData();
             that.editVisible = false;
             that.EditClassid = null;
@@ -358,7 +351,6 @@ if (false) {(function () {
         // this.classi.push(newClassi)
         var that = this;
         var token = wx.getStorageSync('token');
-        //console.log(this.NewClassivalue);
         wx.request({
           url: 'http://120.78.1.231:8084/api/tags/add?name=' + this.NewClassivalue,
           method: 'POST',
@@ -368,7 +360,6 @@ if (false) {(function () {
           },
           success: function success(res) {
             if (res.statusCode === 200) {
-              //console.log(res.data);
               that.fetchPeopleData();
               that.addVisible = false;
               that.NewClassivalue = '';
@@ -404,8 +395,6 @@ if (false) {(function () {
       var _this = this;
 
       var token = wx.getStorageSync('token');
-      //console.log(token);
-      //console.log('1111111');
       wx.request({
         url: 'http://120.78.1.231:8084/api/tags/all',
         method: 'GET',
@@ -414,7 +403,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('数据获取成功:', res.data);
             _this.classi = res.data.tags;
           }
         },

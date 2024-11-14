@@ -109,9 +109,6 @@ if (false) {(function () {
       logs.unshift(Date.now());
       global.mpvue.setStorageSync('logs', logs);
     }
-  },
-  log: function log() {
-    //console.log('log at:' + Date.now());
   }
 });
 

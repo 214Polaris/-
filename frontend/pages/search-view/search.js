@@ -15,7 +15,6 @@ Page({
       this.setData({
         location: labels,
       });
-      //console.log("触发", this.data.location);
     },
     //这个时候触发一次对scoll-one的内容的修改
     ChangeTab(e){
@@ -30,7 +29,6 @@ Page({
         // 如果传进来的只有一个量就没有必要加以区分
         text:e.detail
       });
-      //console.log(this.data.text)
       // 发出请求，更新scoll-one的数据
       this.updateScollOneData();
     },
@@ -54,8 +52,6 @@ Page({
             label: this.data.label
           },
           success(res) {
-            //console.log("已经success");
-            //console.log(res.data)
             const list = res.data.map(item => {
               return {
                 team_id: item.id,
@@ -65,7 +61,6 @@ Page({
                 tags: item.tags
               };
             });
-            //console.log(that.data.label);
             // 这里可以对返回的数据进行后续操作，比如渲染到页面上
             if(that.data.label==='村镇需求')
             {
@@ -91,8 +86,6 @@ Page({
                 proj_list: list
               });
             }
-            //console.log("触发");
-            //console.log({location});
           },
           fail(error) {
             console.error('请求失败', error);

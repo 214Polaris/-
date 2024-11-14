@@ -48,14 +48,14 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "src\\pages\\home_sl\\index.vue"
+Component.options.__file = "src\\pages\\home-uni\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
-  var hotAPI = require("../notification-uni/node_modules/vue-hot-reload-api")
-  hotAPI.install(require("../notification-uni/node_modules/vue"), false)
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
@@ -287,8 +287,6 @@ if (false) {(function () {
     this.teamID = options.Team;
     this.checkComID(this.teamID);
     this.name = options.Name;
-    //console.log(options.Name);
-    //console.log('是否队长', options.Isleader);
     if (options.Isleader === 'true') {
       this.isLeader = 1;
     }
@@ -303,7 +301,6 @@ if (false) {(function () {
       this.isPositiveInteger = pattern.test(comID);
     },
     onNotification: function onNotification() {
-      //console.log('111111111');
       if (this.teamID != null && !isNaN(this.teamID)) {
         wx.navigateTo({
           url: '/pages/notification_sl/main'
@@ -333,7 +330,6 @@ if (false) {(function () {
     },
     onManageMember: function onManageMember() {
       if (this.teamID != null && !isNaN(this.teamID)) {
-        //console.log(this.isLeader);
         if (this.isLeader === 0) {
           this.showWarningToast('请联系队长管理队员！');
         } else {
@@ -851,7 +847,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("../notification-uni/node_modules/vue-hot-reload-api").rerender("data-v-643062b8", esExports)
+     require("vue-hot-reload-api").rerender("data-v-643062b8", esExports)
   }
 }
 

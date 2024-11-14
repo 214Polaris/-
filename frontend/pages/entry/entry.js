@@ -40,13 +40,11 @@ Page({
     this.setData({
       class: e.detail,
     });
-    // //console.log('class',this.data.class)
   },
   Updatestag(e) {
     this.setData({
       stag: e.detail,
     });
-    // //console.log('stag',this.data.stag)
     //在这里和loc触发即可
     this.updateScollData();
   },
@@ -57,27 +55,27 @@ Page({
       scollOneComponent.setData({
         teamed_list: []
       });
-      //console.log(this.data.class, this.data.stag)
-      let that=this
+      let that = this
       wx.request({
         url: 'http://120.78.1.231:8084/api/mainPage?category=' + this.data.class + '&tag_id=' + this.data.stag,
         success(res) {
-          console.log(res.data)
-          let list=res.data.map(item => {
-            return {
-              team_id: item.id,
-              team_title: item.name,
-              team_img: "data:image/png;base64," + item.image.replace(/[\r\n]/g, ''),
-              team_name: item.list, 
-              tags: item.tags
-            };
-          });
-          //console.log(list);
-          // 这里可以对返回的数据进行后续操作，比如渲染到页面上
-          scollOneComponent.setData({
-            teamed_list: list
-          });
-          //console.log("触发");
+          try {
+            let list = res.data.map(item => {
+              return {
+                team_id: item.id,
+                team_title: item.name,
+                team_img: "data:image/png;base64," + item.image.replace(/[\r\n]/g, ''),
+                team_name: item.list,
+                tags: item.tags
+              };
+            });
+            // 这里可以对返回的数据进行后续操作，比如渲染到页面上
+            scollOneComponent.setData({
+              teamed_list: list
+            });
+          }
+          catch (error) {
+          }
         },
         fail(error) {
           console.error('请求失败', error);
@@ -87,10 +85,8 @@ Page({
   },
   onLoad(options) {
     const { path, q } = options;
-    //console.log(path);
     if (q) {
       const str = this.getQueryByUrl(decodeURIComponent(q));
-      //console.log(str, str.page);
       wx.navigateTo({
         url: `/pages/${str.page}/${str.page}`,
       });
@@ -100,14 +96,13 @@ Page({
     wx.request({
       url: 'http://120.78.1.231:8084/api/need/paired_number',
       success(res) {
-        //console.log("请求成功")
         // 返回的内容为空的话执行replace会有问题
-        //console.log(res.data.number);
         // 这里可以对返回的数据进行后续操作，比如渲染到页面上
-        that.setData({
-          teamNumber: res.data.number
-        });
-        //console.log("触发");
+        if(res.data){
+          that.setData({
+            teamNumber: res.data.number
+          });
+        }
       },
       fail(error) {
         console.error('请求失败', error);
@@ -181,11 +176,11 @@ Page({
         })
       } else if (uc === 'community') {
         wx.redirectTo({
-          url: `/pages/home_c/main?FirstLogin=0&Com=${wx.getStorageSync('Com')}&userName=${wx.getStorageSync('userName')}&Name=${wx.getStorageSync('Name')}&head=${wx.getStorageSync('head')}`
+          url: `/pages/home-com/main?FirstLogin=0&Com=${wx.getStorageSync('Com')}&userName=${wx.getStorageSync('userName')}&Name=${wx.getStorageSync('Name')}&head=${wx.getStorageSync('head')}`
         })
       } else {
         wx.redirectTo({
-          url: `/pages/home_sl/main?Team=${wx.getStorageSync('Team')}&userName=${wx.getStorageSync('userName')}&Name=${wx.getStorageSync('Name')}&Isleader=${wx.getStorageSync('Isleader')}&head=${wx.getStorageSync('head')}`
+          url: `/pages/home-uni/main?Team=${wx.getStorageSync('Team')}&userName=${wx.getStorageSync('userName')}&Name=${wx.getStorageSync('Name')}&Isleader=${wx.getStorageSync('Isleader')}&head=${wx.getStorageSync('head')}`
         })
       }
     }

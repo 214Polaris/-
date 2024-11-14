@@ -1,7 +1,4 @@
-// my_page/image-crop/crop.js
-// import WeCropper from '../../we-cropper/example/we-cropper/we-cropper'
-// pages/weCoperStudy/weCoperStudy.js
- import WeCropper from '../../web-cropper/we-cropper/example/we-cropper/we-cropper'
+import WeCropper from '../../web-cropper/we-cropper/example/we-cropper/we-cropper'
  
 const device = wx.getSystemInfoSync() // 获取设备信息
 const width = device.windowWidth // 示例为一个与屏幕等宽的正方形裁剪框
@@ -48,14 +45,12 @@ Page({
   },
  
   getCropperImage() {
-    //console.log("开始上传")
     // 如果有需要两层画布处理模糊，实际画的是放大的那个画布
     this.cropper.getCropperImage((src) => {
       if (src) {
         this.setData({
           imgSrc: src
         })
-        //console.log(this.data.imgSrc)
         wx.showToast({
                              title: '上传中',
                              icon: 'loading',
@@ -71,7 +66,6 @@ Page({
             'token': wx.getStorageSync('token')
           },
           success: function (res) {
-            //console.log(res)
             wx.hideToast()
             // 显示更换头像成功
             wx.showToast({
@@ -97,7 +91,6 @@ Page({
           }
         });
       } else {
-        //console.log('获取图片地址失败，请稍后重试')
       }
     })
   },
@@ -110,12 +103,10 @@ Page({
       imagePath: options.imagePath
     });
     //this.wecropper.pushOrign(this.data.imagePath)
-    //console.log(this.data.imagePath)
     const { cropperOpt } = this.data
  
     this.cropper = new WeCropper(cropperOpt)
       .on('ready', (ctx) => {
-        //console.log(`wecropper is ready for work!`)
       })
       .on('beforeImageLoad', (ctx) => {
         wx.showToast({

@@ -53,8 +53,8 @@ if (Component.options.functional) {console.error("[vue-loader] index.vue: functi
 
 /* hot reload */
 if (false) {(function () {
-  var hotAPI = require("../noti-uni/node_modules/vue-hot-reload-api")
-  hotAPI.install(require("../noti-uni/node_modules/vue"), false)
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
@@ -163,14 +163,12 @@ if (false) {(function () {
   methods: {
     onChange: function onChange(e) {
       this.product.value = e.target.value;
-      //console.log('选择需求', this.product.value);
       this.project_id = this.product.value;
     },
     changePosition: function changePosition(e) {
       this.position = e.target.value;
     },
     Agree: function Agree() {
-      //console.log('111');
       var token = wx.getStorageSync('token');
       var that = this;
       wx.request({
@@ -230,7 +228,6 @@ if (false) {(function () {
     fetchShowData: function fetchShowData() {
       var token = wx.getStorageSync('token');
       var that = this;
-      //console.log(token);
       wx.request({
         url: 'http://120.78.1.231:8084/api/need/team_paired',
         method: 'GET',
@@ -239,7 +236,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('数据获取成功:', res.data);
             that.product = {
               value: 1,
               options: res.data.map(function (need) {
@@ -247,7 +243,6 @@ if (false) {(function () {
               })
             };
             that.project_id = that.product.options[0].value;
-            //console.log(that.product);
           }
         },
         fail: function fail(error) {
