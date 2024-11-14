@@ -6,17 +6,14 @@ This project is a backend service repository based on Java and Spring Boot, focu
 
 ## Screenshot
 
-<div style="display: flex; justify-content: space-between; align-items: center;">
-    <img src="doc_image/image.png" alt="Image 1" style="width: 45%; margin-right: 10px;">
-    <img src="doc_image/image1.png" alt="Image 2" style="width: 45%; margin-left: 10px;">
-</div>
-
-</br>
-
-<div style="display: flex; justify-content: space-between; align-items: center;">
-    <img src="doc_image/image2.png" alt="Image 1" style="width: 45%; margin-right: 10px;">
-    <img src="doc_image/image3.png" alt="Image 2" style="width: 45%; margin-left: 10px;">
-</div>
+<table>
+  <tr>
+    <td><img src="doc_image/image.png" alt="Image 1" width="200"></td>
+    <td><img src="doc_image/image1.png" alt="Image 2" width="200"></td>
+    <td><img src="doc_image/image2.png" alt="Image 2" width="200"></td>
+    <td><img src="doc_image/image3.png" alt="Image 2" width="200"></td>
+  </tr>
+</table>
 
 ## Feature
 
