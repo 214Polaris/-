@@ -1,6 +1,6 @@
 # Social Practice Platform
 
-![](https://img.shields.io/badge/Star-8-yellow) ![](https://img.shields.io/badge/SpringBoot-3.2.5-red) ![](https://img.shields.io/badge/MyBatis-3.0.3-orange)
+![](https://img.shields.io/badge/Star-8-yellow) ![](https://img.shields.io/badge/SpringBoot-3.2.5-red) ![](https://img.shields.io/badge/MyBatis-3.0.3-orange) ![](https://img.shields.io/badge/WeChatDeveloperTool-Stable-green)
 
 This project is a backend service repository based on Java and Spring Boot, focused on providing demand-matching functionality between communities and university task forces.
 
