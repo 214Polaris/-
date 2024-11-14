@@ -98,9 +98,11 @@ Page({
       success(res) {
         // 返回的内容为空的话执行replace会有问题
         // 这里可以对返回的数据进行后续操作，比如渲染到页面上
-        that.setData({
-          teamNumber: res.data.number
-        });
+        if(res.data){
+          that.setData({
+            teamNumber: res.data.number
+          });
+        }
       },
       fail(error) {
         console.error('请求失败', error);

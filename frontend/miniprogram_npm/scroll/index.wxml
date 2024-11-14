@@ -4,11 +4,11 @@
     <t-tabs defaultValue="{{0}}" space-evenly="{{false}}" bind:click="TabsClick" theme="tag">
       <t-tab-panel wx:for="{{taglist.length}}" wx:key="index" label="{{taglist[index].name}}" value="{{index}}" />
       <!-- 展示内容 -->
-      <view wx:for="{{teamed_list}}" wx:for-item="team" style="width: 750rpx; height: 188rpx; display: block; box-sizing: border-box">
+      <view wx:for="{{teamed_list}}" wx:for-item="team" wx:key="index" style="width: 750rpx; height: 188rpx; display: block; box-sizing: border-box">
         <view bind:tap="onClickDemand" data-demand="{{team}}">
           <t-cell title="{{team.team_title}}" align="top" image="{{team.team_img}}" bordered="{{false}}" />
           <view class="block" style="position: relative; left: 0rpx; top: -85rpx; width: 750rpx; height: 71rpx; display: flex; box-sizing: border-box">
-            <view wx:for="{{team.tags}}" wx:key="id" wx:for-item="tag" style="position: relative; left: 127rpx; top: -3rpx">
+            <view wx:for="{{team.tags}}" wx:key="id" wx:for-item="tag" wx:key="index" style="position: relative; left: 127rpx; top: -3rpx">
               <v-tag class="margin-16" variant="outline" theme="primary">{{tag}}</v-tag>
             </view>
           </view>
@@ -25,11 +25,11 @@
     <t-tabs defaultValue="{{0}}" space-evenly="{{false}}" bind:click="TabsClick" theme="tag">
       <t-tab-panel wx:for="{{taglist.length}}" wx:key="index" label="{{taglist[index].name}}" value="{{index}}" />
       <!-- 展示内容 -->
-      <view wx:for="{{teamed_list}}" wx:for-item="team" style="width: 750rpx; height: 188rpx; display: block; box-sizing: border-box">
+      <view wx:for="{{teamed_list}}" wx:for-item="team" wx:key="index" style="width: 750rpx; height: 188rpx; display: block; box-sizing: border-box">
       <view bind:tap="onClickTeam" data-team="{{team}}">
         <t-cell title="{{team.team_title}}" align="top" hover image="{{team.team_img}}" bordered="{{false}}" />
         <view class="block" style="position: relative; left: 0rpx; top: -85rpx; width: 750rpx; height: 71rpx; display: flex; box-sizing: border-box">
-          <view wx:for="{{team.tags}}" wx:key="id" wx:for-item="tag" style="position: relative; left: 127rpx; top: -3rpx">
+          <view wx:for="{{team.tags}}" wx:key="id" wx:for-item="tag" wx:key="index" style="position: relative; left: 127rpx; top: -3rpx">
             <v-tag class="margin-16" variant="outline" theme="primary">{{tag}}</v-tag>
           </view>
         </view>

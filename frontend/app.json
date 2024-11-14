@@ -45,8 +45,6 @@
     "pages/update-team/main"
   ],
   "requiredPrivateInfos": ["chooseLocation"],
-  "component": true,
-  "styleIsolation": "apply-shared",
   "usingComponents": {
     "t-button": "tdesign-miniprogram/button/button",
     "t-avatar": "tdesign-miniprogram/avatar/avatar",
