@@ -441,7 +441,6 @@ if (false) {(function () {
     };
   },
   onLoad: function onLoad(options) {
-    console.log(options.CommunID);
     this.fetchShowData(options.CommunID); // 根据社区ID去找对应的show中的数据后端接口！
   },
   mounted: function mounted() {
@@ -483,9 +482,6 @@ if (false) {(function () {
       if (this.initialAddress !== that.data.areaText) {
         this.hasChange = true;
       }
-      console.log('change', this.hasChange);
-      console.log(this.AddList);
-      console.log('deletelist', this.DeleteList);
       this.DeleteList.forEach(function (item) {
         _this.handleDeleteImg(_this.ComID, item.media_id);
       });
@@ -493,10 +489,7 @@ if (false) {(function () {
         _this.handleUpload(item.url, _this.ComID);
       });
       if (this.changeVideo) {
-        console.log('传了视频');
-        console.log(this.Videopath);
         this.handleUploadVideo(this.Videopath).then(function () {
-          console.log('上传视频成功');
         }).catch(function (error) {
           console.error('上传失败:', error);
         });
@@ -536,7 +529,6 @@ if (false) {(function () {
                 });
               }, 800);
             } else {
-              console.log(res.data);
             }
           }
         });
@@ -574,11 +566,9 @@ if (false) {(function () {
     getCities: function getCities(provinceValue) {
       var _this2 = this;
 
-      console.log('getcities');
       var cities = this.getOptions(this.areaList.cities, function (city) {
         return _this2.match(city.value, provinceValue, 2);
       });
-      console.log(cities[0].value);
       var counties = this.getCounties(cities[0].value);
       return { cities: cities, counties: counties };
     },
@@ -630,12 +620,10 @@ if (false) {(function () {
     onAreaPicker: function onAreaPicker() {
       // this.data.areaVisible = true
       var that = this;
-      console.log('点击地址');
       this.addressChange = true;
       wx.chooseLocation({
         success: function success(res) {
           // success
-          console.log(res, 'location');
           // that.wd = res.latitude
           // that.jd = res.longitude
           // that.address = res.address
@@ -653,20 +641,14 @@ if (false) {(function () {
       });
     },
     handleRemove: function handleRemove(index) {
-      console.log('Removed image index:', index);
       if (this.originFiles[index].isNew === 1) {
-        console.log('删除了刚添加的图片');
       } else {
-        console.log('删掉了图片', this.originFiles[index]);
         this.DeleteList.push(this.originFiles[index]);
-        console.log('现在的deletelist：', this.DeleteList);
       }
       // this.handleDeleteImg(this.ComID, this.originFiles[index].media_id)
       this.originFiles.splice(index, 1);
     },
     uploadVideo: function uploadVideo(filePath) {
-      console.log(filePath);
-      console.log('上传视频:', filePath);
       var that = this;
       var token = wx.getStorageSync('token');
       wx.uploadFile({
@@ -684,7 +666,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            console.log('上传视频成功', res);
             that.showSuccessToast('已完成');
             setTimeout(function () {
               wx.navigateBack({
@@ -701,7 +682,6 @@ if (false) {(function () {
       });
     },
     ChangeVideo: function ChangeVideo() {
-      console.log('点击修改视频');
       var that = this;
       wx.chooseVideo({
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
@@ -727,7 +707,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            console.log('删除图片成功', res);
           } else {
             console.error('删除图片失败', res.data);
           }
@@ -800,7 +779,6 @@ if (false) {(function () {
       }))();
     },
     uploadFile: function uploadFile(fileObj, ReturnID) {
-      console.log('上传文件:', fileObj);
       var token = wx.getStorageSync('token');
       return new __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_promise___default.a(function (resolve, reject) {
         wx.uploadFile({
@@ -818,7 +796,6 @@ if (false) {(function () {
           },
           success: function success(res) {
             if (res.statusCode === 200) {
-              console.log('上传图片成功', res);
               var uploadId = res.header.id; // 提取res.header.id
               resolve(uploadId); // 成功时调用resolve并传递uploadId
             } else {
@@ -872,9 +849,6 @@ if (false) {(function () {
     },
     handleAdd: function handleAdd(e) {
       // t-upload的files中的Files一定不能删！！！，同时要确保data中没有Files!!!
-      console.log('add');
-      console.log(e);
-      console.log(e.target.files[0]);
       var that = this;
       that.originFiles.push({
         url: e.target.files[0].url,
@@ -882,7 +856,6 @@ if (false) {(function () {
         type: e.target.files[0].type,
         isNew: 1
       });
-      console.log('添加新图片', this.originFiles);
       that.AddList.push({
         url: e.target.files[0].url,
         name: e.target.files[0].name,
@@ -895,7 +868,6 @@ if (false) {(function () {
       var token = wx.getStorageSync('token');
       var that = this;
       that.OverlayVisible = true;
-      console.log('Clicked image index:', index);
       if (this.originFiles[index].isNew === 1) {
         this.currentImageUrl = this.originFiles[index].url;
         return;
@@ -941,13 +913,11 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            console.log('数据获取成功:', res.data);
             that.show.id = res.data.comID;
             that.show.name = res.data.community_name;
             that.show.intro = res.data.introduction;
             that.initialAddress = res.data.address;
             that.data.areaText = that.initialAddress;
-            // console.log(res.data.mediaList.filter(item => item.type === 'image').map(item => item.path))
             // 要根据mediaList去请求
             // 用dataString是为了传输的数据能有多个images，因为传统的json不允许重复的Key
             var filteredMediaList = res.data.mediaList.filter(function (item) {
@@ -956,7 +926,6 @@ if (false) {(function () {
             var videoItem = res.data.mediaList.find(function (item) {
               return item.type === 'video';
             });
-            console.log(videoItem);
             that.SetVideo(videoItem);
             var dataString = '';
             filteredMediaList.forEach(function (item) {

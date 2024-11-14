@@ -16,7 +16,6 @@ Component({
       wx.request({
         url: 'http://120.78.1.231:8084/api/tags/all',
         success(res){
-          //console.log(res.data.tags)
           that.setData({
             taglist:res.data.tags
           })
@@ -31,7 +30,6 @@ Component({
     },
     // 点击选项卡的时候触发，也会触发二级的改变，触发页面请求
     onTabsClick(event) {
-      //console.log(`Click tab, tab-panel value is ${event.detail.value}.`);
       this.setData({
         class: event.detail.label,
       });
@@ -49,14 +47,12 @@ Component({
           stag1: this.findIdByName(e.detail.label),
         });
         //传示范项目和stag1
-        //console.log(this.data.class, this.data.stag1);
         this.triggerEvent('changeSecond', this.data.stag1);
       } else {
         this.setData({
           stag2: this.findIdByName(e.detail.label)
         });
         //传结对成功墙和stag2
-        //console.log(this.data.class, this.data.stag2);
         this.triggerEvent('changeSecond', this.data.stag2);
       }
     },
@@ -68,7 +64,6 @@ Component({
       })
     },
     onClickProject(e) {
-      //console.log(e.currentTarget.dataset)
       //结对成功墙
       //跳转结对详情
       let data=e.currentTarget.dataset.team;

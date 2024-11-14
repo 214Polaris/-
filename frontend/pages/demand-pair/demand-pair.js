@@ -38,7 +38,7 @@ Page({
         'Upgrade': 'h2c'
       },
       success(res) {
-        //console.log(res.data);
+
         const data = res.data;
         let avatar = data.gov_avatar.replace(/[\r\n]/g, '');
         let imgSrc = [];
@@ -146,7 +146,6 @@ Page({
     })
   },
   handlePair() {
-    //console.log('pair');
     this.setData({
       showConfirm: true
     })
@@ -161,7 +160,6 @@ Page({
         'Upgrade': 'h2c'
       },
       success(res) {
-        //console.log(res)
         if(res.statusCode==200)
         {
           wx.showToast({
@@ -178,7 +176,6 @@ Page({
         }
       },
       fail(res){
-        //console.log(res)
         wx.showToast({
           title: res,
           icon: 'none'
@@ -205,7 +202,6 @@ Page({
     }
 
     let img = this.data.imageSrc;
-    //console.log(img);
 
     // 创建一个 Promise 数组
     const promises = imgReq.map(item => this.getImageData(item));

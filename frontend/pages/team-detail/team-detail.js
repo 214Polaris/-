@@ -31,7 +31,6 @@ Page({
     if(options.team!=undefined)
     {
       let team=JSON.parse(options.team);
-      console.log(team)
       this.setData({
         team_id:team.team_id,
         team_name:team.team_name,
@@ -48,7 +47,6 @@ Page({
         'Upgrade': 'h2c'
       },
       success: (res) => {
-        //console.log(res.data);
         const data = res.data;
         let teamedList = [];
         data.teamedList.forEach(function (team) {
@@ -111,7 +109,6 @@ Page({
   onClickTeamed(e) {
 
     //跳转结对详情页
-    //console.log(e);
     let id = e.currentTarget.dataset.id;
     let obj = {
       proj_id: id,

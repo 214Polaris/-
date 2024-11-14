@@ -128,7 +128,6 @@ Page({
             'token':token
           },
           success (res) {
-            //console.log(res.data)
             wx.showToast({
               title: '修改密码成功',
               icon: 'success',
@@ -139,7 +138,6 @@ Page({
             });
           },
           fail (err) {
-            //console.log(err)
           }
         })
       }
@@ -170,7 +168,6 @@ Page({
         sourceType: ['album', 'camera'],
         success(res) {
           // Navigate to a new page to display the selected image
-          //console.log('跳转')
           wx.navigateTo({
             url: "/pages/image-crop/crop?imagePath="+ res.tempFiles[0].tempFilePath
           });
@@ -185,7 +182,6 @@ Page({
         sex: sex,
         phone: phone
       });
-      //console.log(this.data.name)
       var mobile = /^[1][3,4,5,7,8][0-9]{9}$/;
       var isMobile = mobile.exec(this.data.phone)
       //输入有误的话，弹出模态框提示
@@ -210,7 +206,6 @@ Page({
           'token':token
         },
         success (res) {
-          //console.log(res.data)
           wx.showToast({
             title: '修改成功',
             icon: 'success',
@@ -218,7 +213,6 @@ Page({
           });
         },
         fail (err) {
-          //console.log(err)
         }
       })
       }
@@ -239,8 +233,6 @@ Page({
           'token':token
         },
         success(res) {
-          //console.log("已经success");
-          //console.log(res.data)
           that.setData({
             image: "data:image/png;base64," +res.data.image.replace(/[\r\n]/g, ''),
             name:res.data.name,
@@ -248,7 +240,6 @@ Page({
             sex:res.data.gender,
             user_name:res.data.username
           });
-          //console.log("触发");
         },
         fail(error) {
           console.error('请求失败', error);

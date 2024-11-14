@@ -31,7 +31,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    //console.log(options);
     if (options.proj != undefined) {
       let obj = JSON.parse(options.proj);
       this.setData({
@@ -48,7 +47,6 @@ Page({
       },
       success(res) {
         const data = res.data;
-        //console.log(data);
         let team_head = data.team_head.replace(/[\r\n]/g, '');
         let gov_head = data.gov_head.replace(/[\r\n]/g, '');
         let activity = [];
@@ -108,7 +106,6 @@ Page({
     })
   },
   onClickAct(e) {
-    //console.log(e.currentTarget.dataset.result);
     let result = e.currentTarget.dataset.result;
     //跳转成果详情界面
     wx.navigateTo({
@@ -148,7 +145,6 @@ Page({
     }
 
     let img = this.data.imageSrc;
-    //console.log(img);
 
     // 创建一个 Promise 数组
     const promises = imgReq.map(item => this.getImageData(item));
@@ -158,7 +154,6 @@ Page({
       .then(results => {
         // 将所有请求结果合并到 img 数组中
         img = img.concat(results);
-        //console.log(img)
         this.setData({
           imageSrc: img,
           imgReq: []

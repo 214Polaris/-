@@ -25,7 +25,6 @@ Component({
   methods: {
     // 点击选项卡的时候触发，触发页面请求
     onTabsClick(event) {
-      // //console.log(`Click tab, tab-panel value is ${event.detail.value}.`);
       this.setData({
         class: event.detail.label,
       });

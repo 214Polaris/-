@@ -240,9 +240,7 @@ if (false) {(function () {
     };
   },
   onLoad: function onLoad(options) {
-    console.log(options.userName);
     this.name = options.Name;
-    console.log(options.Name);
     var cleanedImg = options.head.replace(/(\r\n|\n|\r)/gm, '');
     var imageSrc = 'data:image/jpeg;base64,' + cleanedImg;
     this.image = imageSrc;

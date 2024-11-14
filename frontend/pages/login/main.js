@@ -195,9 +195,7 @@ if (false) {(function () {
   onLoad: function onLoad(options) {
     this.username = '';
     this.password = '';
-    //console.log(options.identify);
     this.user_category = options.identify;
-    //console.log(this.user_category);
   },
 
   methods: {
@@ -211,12 +209,9 @@ if (false) {(function () {
     },
     login: function login() {
       var encryptedPassword = __WEBPACK_IMPORTED_MODULE_0_crypto_js___default.a.MD5(this.password).toString();
-      //console.log(encryptedPassword);
       var uc = this.user_category;
-      //console.log(uc);
       var that = this;
       // 这里应添加登录逻辑
-      //console.log('登录信息:', this.username, this.password);
       wx.request({
         url: 'http://120.78.1.231:8084/api/login', // 登录接口地址
         method: 'POST', // 使用POST方法
@@ -230,7 +225,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('登录成功', res.data);
             // 存token
             wx.setStorageSync('token', res.header['Token'] || res.header['token']);
             wx.setStorageSync('ide', uc);
@@ -242,11 +236,8 @@ if (false) {(function () {
               },
               success: function success(res2) {
                 if (res2.statusCode === 200) {
-                  //console.log('获取信息成功', res2);
                   var decoded = Object(__WEBPACK_IMPORTED_MODULE_1_jwt_decode__["a" /* jwtDecode */])(res.header['Token'] || res.header['token']);
                   // 输出用户信息
-                  //console.log('token携带信息:', decoded);
-                  //console.log('用户信息:', JSON.parse(decoded.sub).name);
                   wx.setStorageSync('head', res2.data.avatar);
                   wx.setStorageSync('userName', that.username);
                   wx.setStorageSync('Name', JSON.parse(decoded.sub).name);
@@ -257,15 +248,14 @@ if (false) {(function () {
                   }
                   if (uc === 'community') {
                     if (that.password === '123456') {
-                      //console.log('firstlogin设成1');
                       wx.setStorageSync('Com', res2.data.communityID);
                       wx.navigateTo({
-                        url: '/pages/home_c/main?FirstLogin=1&Com=' + res2.data.communityID + '&userName=' + that.username + '&Name=' + JSON.parse(decoded.sub).name + '&head=' + res2.data.avatar
+                        url: '/pages/home-com/main?FirstLogin=1&Com=' + res2.data.communityID + '&userName=' + that.username + '&Name=' + JSON.parse(decoded.sub).name + '&head=' + res2.data.avatar
                       });
                     } else {
                       wx.setStorageSync('Com', res2.data.communityID);
                       wx.navigateTo({
-                        url: '/pages/home_c/main?FirstLogin=0&Com=' + res2.data.communityID + '&userName=' + that.username + '&Name=' + JSON.parse(decoded.sub).name + '&head=' + res2.data.avatar
+                        url: '/pages/home-com/main?FirstLogin=0&Com=' + res2.data.communityID + '&userName=' + that.username + '&Name=' + JSON.parse(decoded.sub).name + '&head=' + res2.data.avatar
                       });
                     }
                   }
@@ -273,7 +263,7 @@ if (false) {(function () {
                     wx.setStorageSync('Team', res2.data.TeamID);
                     wx.setStorageSync('Isleader', res2.data.isLeader);
                     wx.navigateTo({
-                      url: '/pages/home_sl/main?Team=' + res2.data.TeamID + '&userName=' + that.username + '&Name=' + JSON.parse(decoded.sub).name + '&Isleader=' + res2.data.isLeader + '&head=' + res2.data.avatar
+                      url: '/pages/home-uni/main?Team=' + res2.data.TeamID + '&userName=' + that.username + '&Name=' + JSON.parse(decoded.sub).name + '&Isleader=' + res2.data.isLeader + '&head=' + res2.data.avatar
                     });
                   }
                 } else {

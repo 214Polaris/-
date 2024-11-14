@@ -310,11 +310,9 @@ if (false) {(function () {
     onAreaPicker: function onAreaPicker() {
       // this.data.areaVisible = true
       var that = this;
-      console.log('点击地址');
       wx.chooseLocation({
         success: function success(res) {
           // success
-          console.log(res, 'location');
           // that.wd = res.latitude
           // that.jd = res.longitude
           // that.address = res.address
@@ -334,7 +332,6 @@ if (false) {(function () {
     fetchClassiData: function fetchClassiData() {
       var token = wx.getStorageSync('token');
       var that = this;
-      console.log(token);
       wx.request({
         url: 'http://120.78.1.231:8084/api/tags/all',
         method: 'GET',
@@ -343,7 +340,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            console.log('数据获取成功:', res.data);
             that.data.current = res.data.tags.map(function (tag) {
               return { value: tag.id.toString() };
             });
@@ -477,10 +473,8 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            console.log('新需求注册成功', res);
             var Mid = res.header.media_id || res.header.Media_id;
             var Nid = res.header.need_id || res.header.Need_id;
-            console.log(that.originFiles);
             var uploadTasks = that.originFiles.filter(function (file) {
               return !file.type.includes('video');
             }).map(function (file, index) {
@@ -496,7 +490,6 @@ if (false) {(function () {
             }
             // 并发上传所有图片
             __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_promise___default.a.all(uploadTasks).then(function () {
-              console.log('所有图片上传完成');
             }).catch(function (err) {
               console.error('上传图片过程中发生错误:', err);
             });
@@ -512,8 +505,6 @@ if (false) {(function () {
       });
     },
     uploadVideo: function uploadVideo(filePath, ReturnID) {
-      console.log(filePath);
-      console.log('上传视频:', filePath);
       var that = this;
       var token = wx.getStorageSync('token');
       wx.uploadFile({
@@ -531,7 +522,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            console.log('上传视频成功', res);
             that.showSuccessToast('已完成');
             setTimeout(function () {
               wx.navigateBack({
@@ -550,11 +540,7 @@ if (false) {(function () {
       });
     },
     uploadFile: function uploadFile(fileObj, isCover, CoverID, ReturnID) {
-      console.log('上传文件:', fileObj);
       var token = wx.getStorageSync('token');
-      console.log(isCover);
-      console.log(ReturnID);
-      console.log(CoverID);
       if (isCover === 1) {
         wx.uploadFile({
           url: 'http://120.78.1.231:8084/api/media/modify/image',
@@ -572,7 +558,6 @@ if (false) {(function () {
           },
           success: function success(res) {
             if (res.statusCode === 200) {
-              console.log('上传封面成功', res);
             } else {
               console.error('上传封面失败', res.data);
               // 处理上传失败的逻辑，例如显示错误信息
@@ -600,7 +585,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            console.log('上传图片成功', res);
           } else {
             console.error('上传图片失败', res.data);
             // 处理上传失败的逻辑，例如显示错误信息
@@ -625,22 +609,13 @@ if (false) {(function () {
       this.NeedResource = e.target.value;
     },
     handleSuccess: function handleSuccess(e) {
-      console.log('success');
-      console.log(this.originFiles);
     },
     handleRemove: function handleRemove(e) {
       this.originFiles.splice(e.target.index, 1);
     },
     handleClick: function handleClick(e) {
-      console.log('click');
-      console.log(e);
-      console.log(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(e, null, 2));
-      console.log(e.currentTarget);
     },
     handleAdd: function handleAdd(e) {
-      console.log('add');
-      console.log(e);
-      console.log(e.target.files[0]);
       this.originFiles.push({
         url: e.target.files[0].url,
         name: e.target.files[0].name,

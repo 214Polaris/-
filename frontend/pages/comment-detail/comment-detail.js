@@ -36,7 +36,6 @@ Page({
       success: (res) => {
         const data = res.data;
         let comlist = [];
-        //console.log(data);
         if (data.length === 0) {
           this.setData({
             stop: true
@@ -110,7 +109,6 @@ Page({
           'token': wx.getStorageSync('token')
         },
         success: (res) => {
-          //console.log(res);
           const data = res.data;
           if (data.length === 0) {
             this.setData({

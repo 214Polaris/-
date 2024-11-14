@@ -19,7 +19,6 @@ Component({
 
     onTabsClick(event) {
       // 更新数据,请求返回json后直接赋值给teamed_list
-      //console.log(`Click tab, tab-panel value is ${event.detail.value}.`);
       this.setData({
         class:event.detail.label
       });
@@ -28,10 +27,8 @@ Component({
   //跳转结对详情页
   onClickTeamed(e)
   {
-    //console.log(e.currentTarget.dataset);
     let type=e.currentTarget.dataset.class;
     let data=e.currentTarget.dataset.team;
-    console.log(data)
     if(type==="高校突击队")
     {
       //跳转突击队详情

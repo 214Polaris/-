@@ -197,13 +197,11 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('消息通知获取成功', res.data);
             that.message = res.data.map(function (msg, index) {
               var cleanedBase64String = msg.img.replace(/(\r\n|\n|\r)/gm, '');
               var finalBase64String = 'data:image/jpeg;base64,' + cleanedBase64String;
               return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, msg, { mID: index + 1, img: finalBase64String });
             });
-            //console.log(that.message);
           } else {
             console.error('请求成功但数据获取失败:', res);
           }
@@ -214,13 +212,10 @@ if (false) {(function () {
       });
     },
     onClick: function onClick(mID, type) {
-      //console.log('点击', mID, type);
       if (type === 2 || type === 4) {
-        // //console.log(this.message[mID].reason)
         this.NoPassReason = this.message[mID].reason;
         this.NoPassVisible = true;
       } else if (type === 7) {
-        //console.log('跳转队伍主页');
       }
     },
     confirmNoPass: function confirmNoPass() {

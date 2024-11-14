@@ -48,7 +48,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "src\\pages\\home_c\\index.vue"
+Component.options.__file = "src\\pages\\home-com\\index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -289,14 +289,12 @@ if (false) {(function () {
   onLoad: function onLoad(options) {
     this.name = options.Name;
     if (options.FirstLogin === '1') {
-      console.log('第一次登录，需要修改密码');
       wx.showToast({
         title: '您的密码过于简单，建议修改密码！',
         icon:'none'
       })
     }
     this.comID = options.Com;
-    console.log('社区ID', this.comID);
     this.checkComID(this.comID);
     var cleanedImg = options.head.replace(/(\r\n|\n|\r)/gm, '');
     var imageSrc = 'data:image/jpeg;base64,' + cleanedImg;
@@ -318,9 +316,7 @@ if (false) {(function () {
       this.isPositiveInteger = pattern.test(comID);
     },
     onChangeInfor: function onChangeInfor() {
-      console.log('222222222');
       if (this.comID != null && !isNaN(this.comID)) {
-        console.log(this.comID);
         wx.navigateTo({
           url: '/pages/change_commun_info/main?CommunID=' + this.comID
         });
@@ -372,7 +368,6 @@ if (false) {(function () {
       });
     },
     onMan_leader: function onMan_leader() {
-      console.log('跳转跳转');
       wx.navigateTo({
         url: '/pages/personinfo-view/main'
       });

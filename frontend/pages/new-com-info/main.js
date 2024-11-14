@@ -330,8 +330,6 @@ if (false) {(function () {
     };
   },
   onLoad: function onLoad(options) {
-    //console.log(options.CommunID);
-    //console.log(wx.getStorageSync('token'))
     // this.fetchShowData(options.comID) // 根据社区ID去找对应的show中的数据后端接口！
   },
   mounted: function mounted() {
@@ -367,9 +365,6 @@ if (false) {(function () {
     },
     AgreeAudit: function AgreeAudit() {
       // 连接后端接口！！！
-      //console.log(this.data.areaText.replace(/\s+/g, ''));
-      //console.log(this.show.name);
-      //console.log(this.show.intro);
       var token = wx.getStorageSync('token');
       var that = this;
       wx.request({
@@ -388,11 +383,8 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('注册社区成功', res);
             var Mid = res.header.media_id || res.header.Media_id;
             var id = res.header.id || res.header.Id;
-            //console.log('新社区ID:', id);
-            //console.log(that.originFiles);
             var uploadTasks = that.originFiles.filter(function (file) {
               return !file.type.includes('video');
             }).map(function (file, index) {
@@ -408,7 +400,6 @@ if (false) {(function () {
             }
             // 并发上传所有图片
             __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_promise___default.a.all(uploadTasks).then(function () {
-              //console.log('所有图片上传完成');
             }).catch(function (err) {
               console.error('上传图片过程中发生错误:', err);
             });
@@ -435,8 +426,6 @@ if (false) {(function () {
       });
     },
     uploadVideo: function uploadVideo(filePath, ReturnID) {
-      //console.log(filePath);
-      //console.log('上传视频:', filePath);
       var that = this;
       var token = wx.getStorageSync('token');
       wx.uploadFile({
@@ -454,7 +443,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('上传视频成功', res);
             that.showSuccessToast('已完成');
             setTimeout(function () {
               wx.navigateBack({
@@ -474,7 +462,6 @@ if (false) {(function () {
     },
 
     // uploadFile (fileObj, ReturnID) {
-    //   //console.log('上传文件:', fileObj)
     //   const token = wx.getStorageSync('token')
     //   wx.uploadFile({
     //     url: 'http://120.78.1.231:8084/api/upload/image',
@@ -491,7 +478,6 @@ if (false) {(function () {
     //     },
     //     success: function (res) {
     //       if (res.statusCode === 200) {
-    //         //console.log('上传图片成功', res)
     //       } else {
     //         console.error('上传图片失败', res.data)
     //         // 处理上传失败的逻辑，例如显示错误信息
@@ -504,11 +490,7 @@ if (false) {(function () {
     //   })
     // },
     uploadFile: function uploadFile(fileObj, isCover, CoverID, ReturnID) {
-      //console.log('上传文件:', fileObj);
       var token = wx.getStorageSync('token');
-      //console.log(isCover);
-      //console.log(ReturnID);
-      //console.log(CoverID);
       // if (isCover === 1) {
       //   wx.uploadFile({
       //     url: 'http://120.78.1.231:8084/api/media/modify/image',
@@ -526,7 +508,6 @@ if (false) {(function () {
       //     },
       //     success: function (res) {
       //       if (res.statusCode === 200) {
-      //         //console.log('上传封面成功', res)
       //       } else {
       //         console.error('上传封面失败', res.data)
       //         // 处理上传失败的逻辑，例如显示错误信息
@@ -554,7 +535,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('上传图片成功', res);
           } else {
             console.error('上传图片失败', res.data);
             // 处理上传失败的逻辑，例如显示错误信息
@@ -587,11 +567,9 @@ if (false) {(function () {
     getCities: function getCities(provinceValue) {
       var _this = this;
 
-      //console.log('getcities');
       var cities = this.getOptions(this.areaList.cities, function (city) {
         return _this.match(city.value, provinceValue, 2);
       });
-      //console.log(cities[0].value);
       var counties = this.getCounties(cities[0].value);
       return { cities: cities, counties: counties };
     },
@@ -607,35 +585,26 @@ if (false) {(function () {
           column = _e$target.column,
           index = _e$target.index;
 
-      //console.log(e);
-      //console.log('eeeeeee');
       var _data = this.data,
           provinces = _data.provinces,
           cities = _data.cities;
 
       if (column === 0) {
         // 更改省份
-        //console.log('省份');
 
         var _getCities2 = this.getCities(provinces[index].value),
             _cities = _getCities2.cities,
             counties = _getCities2.counties;
 
         this.data.cities = _cities;
-        //console.log('cities');
-        //console.log(this.data.cities);
         this.data.counties = counties;
-        //console.log(counties);
       }
       if (column === 1) {
         // 更改城市
-        //console.log('城市');
         var _counties = this.getCounties(cities[index].value);
         this.data.counties = _counties;
-        //console.log(_counties);
       }
       if (column === 2) {
-        //console.log('区县');
         // 更改区县
       }
     },
@@ -654,11 +623,9 @@ if (false) {(function () {
     onAreaPicker: function onAreaPicker() {
       // this.data.areaVisible = true
       var that = this;
-      //console.log('点击地址');
       wx.chooseLocation({
         success: function success(res) {
           // success
-          //console.log(res, 'location');
           // that.wd = res.latitude
           // that.jd = res.longitude
           // that.address = res.address
@@ -682,7 +649,6 @@ if (false) {(function () {
       this.VideoFiles.splice(e.target.index, 1);
     },
     handleClick: function handleClick(e) {
-      //console.log(e);
     },
     handleAdd: function handleAdd(e) {
       var file = e.target.files[0];
@@ -691,7 +657,6 @@ if (false) {(function () {
         name: file.name,
         type: file.type
       });
-      //console.log(this.originFiles);
     },
     handleAddVideo: function handleAddVideo(e) {
       var file = e.target.files[0];
@@ -700,7 +665,6 @@ if (false) {(function () {
         name: file.name,
         type: file.type
       });
-      //console.log(this.VideoFiles);
     }
   }
 });

@@ -38,7 +38,6 @@ Page({
         'Upgrade': 'h2c'
       },
       success(res) {
-        //console.log(res.data);
         const data = res.data;
         let avatar = data.gov_avatar.replace(/[\r\n]/g, '');
         let imgSrc = [];
@@ -123,7 +122,6 @@ Page({
     });
   },
   onClickImg(e) {
-    //console.log(this.data.imgList);
     this.setData({
       Imgvisible: !this.data.Imgvisible
     })
@@ -163,14 +161,12 @@ Page({
       .then(results => {
         // 将所有请求结果合并到 img 数组中
         img = img.concat(results);
-        //console.log(img)
         let newimglist=[]
         for(let i=0;i<img.length;i++)
         {
           if(img[i].img_flag===0)
             newimglist.push(img[i].src)
         }
-        //console.log(newimglist)
         this.setData({
           imageSrc: img,
           imgReq: [],

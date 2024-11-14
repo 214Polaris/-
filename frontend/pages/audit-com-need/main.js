@@ -286,11 +286,9 @@ if (false) {(function () {
     };
   },
   onLoad: function onLoad(options) {
-    //console.log(options.Needid);
     this.fetchShowData(options.Needid); // 根据options.Name去找对应的show中的数据后端接口！
     this.NeedID = options.Needid;
     this.ComName = options.ComName;
-    //console.log('所属社区', this.ComName);
   },
 
   methods: {
@@ -298,12 +296,10 @@ if (false) {(function () {
       // this.images = []
       // this.images.push(this.show.swiperList[this.show.imageCurrent])
       this.showIndex = false; // 显示'1/1'
-      //console.log(e);
       // 获取高清大图
       var token = wx.getStorageSync('token');
       var that = this;
       that.visible = true;
-      //console.log('Clicked image index:', this.show.imageCurrent);
       wx.request({
         url: 'http://120.78.1.231:8084/api/media/get/image',
         method: 'GET',
@@ -329,10 +325,7 @@ if (false) {(function () {
       });
     },
     onChange: function onChange(e) {
-      // //console.log('change')
-      // //console.log(e.target.current)
       this.show.imageCurrent = e.target.current;
-      //console.log(this.show.imageCurrent);
     },
     Agree: function Agree() {
       // 调用后端审核成功接口！
@@ -438,46 +431,8 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('数据获取成功:', res.data);
             that.show = res.data;
             that.show.belong = that.ComName;
-            // that.show.name = res.data.title
-            // that.show.intro = res.data.introduction
-            // that.show.belong = res.data.community_id
-            // that.show.text = res.data.resource
-            // const filteredMediaList = res.data.mediaList.filter(item => item.type === 'image')
-            // const videoItem = res.data.mediaList.find(item => item.type === 'video')
-            // //console.log(videoItem)
-            // that.SetVideo(videoItem)
-            // let dataString = ''
-            // filteredMediaList.forEach((item) => {
-            //   dataString += `images=${item.path}&`
-            // })
-            // dataString += `id=${parseInt(that.NeedID, 10)}&type=1`
-            // wx.request({
-            //   url: 'http://120.78.1.231:8084/api/media/get/image/thumbnail',
-            //   method: 'POST',
-            //   data: dataString,
-            //   header: {
-            //     'content-type': 'application/x-www-form-urlencoded', // 不能用application/json了！！！
-            //     'token': `${token}`
-            //   },
-            //   success: function (res2) {
-            //     if (res.statusCode === 200) {
-            //       const newOriginFiles = res2.data.map((base64, index) => {
-            //         return {
-            //           url: `data:image/jpeg;base64,${base64.replace(/(\r\n|\n|\r)/gm, '')}`,
-            //           type: 'image',
-            //           path: filteredMediaList[index].path,
-            //           media_id: filteredMediaList[index].media_id,
-            //           isNew: 0
-            //         }
-            //       })
-            //       // 假设有一个变量 that 指向你当前的页面实例
-            //       that.show.swiperList = newOriginFiles // 更新页面数据
-            //     }
-            //   }
-            // })
           } else {
             console.error('请求成功但数据获取失败:', res);
           }

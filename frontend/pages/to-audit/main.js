@@ -169,7 +169,6 @@ if (false) {(function () {
   methods: {
     onTabsClick: function onTabsClick(event) {
       var target = event.mp._relatedInfo.anchorTargetText;
-      //console.log('点击', target);
       this.Now = target;
       if (target === '社区信息') {
         this.auditList = this.ComList;
@@ -177,7 +176,6 @@ if (false) {(function () {
         this.auditList = this.NeedList;
       } else if (target === '院系队伍') {
         this.auditList = this.TeamList;
-        //console.log(this.auditList);
       } else {
         this.auditList = this.FruitList;
       }
@@ -186,8 +184,6 @@ if (false) {(function () {
       var audit = this.auditList.find(function (item) {
         return item.audit_id === auditId;
       });
-      //console.log(audit);
-      //console.log(audit.community_name);
       if (this.Now === '社区需求') {
         wx.navigateTo({
           url: '/pages/audit_community_need/main?Needid=' + audit.audit_id + '&ComName=' + audit.community_name
@@ -220,7 +216,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('社区信息获取成功', res.data);
             that.ComList = res.data.map(function (item) {
               var cleanedBase64String = item.img.replace(/(\r\n|\n|\r)/gm, '');
               var finalBase64String = 'data:image/jpeg;base64,' + cleanedBase64String;
@@ -228,7 +223,6 @@ if (false) {(function () {
                 img: finalBase64String
               });
             });
-            //console.log(that.ComList);
             that.auditList = that.ComList;
           } else {
             console.error('请求成功但数据获取失败:', res);
@@ -250,7 +244,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('成果信息获取成功', res.data);
             that.FruitList = res.data.map(function (item) {
               var cleanedBase64String = item.img.replace(/(\r\n|\n|\r)/gm, '');
               var finalBase64String = 'data:image/jpeg;base64,' + cleanedBase64String;
@@ -259,7 +252,6 @@ if (false) {(function () {
                 name: item.title
               });
             });
-            //console.log(that.ComList);
           } else {
             console.error('请求成功但数据获取失败:', res);
           }
@@ -280,7 +272,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('队伍信息获取成功', res.data);
             that.TeamList = res.data.map(function (item) {
               var cleanedBase64String = item.img.replace(/(\r\n|\n|\r)/gm, '');
               var finalBase64String = 'data:image/jpeg;base64,' + cleanedBase64String;
@@ -290,7 +281,6 @@ if (false) {(function () {
                 name: item.team_name
               });
             });
-            //console.log(that.TeamList);
             // that.auditList = that.ComList
           } else {
             console.error('请求成功但数据获取失败:', res);
@@ -312,7 +302,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('需求信息获取成功', res.data);
             that.NeedList = Array.isArray(res.data) ? res.data.map(function (item) {
               var cleanedBase64String = item.img.replace(/(\r\n|\n|\r)/gm, '');
               var finalBase64String = 'data:image/jpeg;base64,' + cleanedBase64String;
@@ -322,7 +311,6 @@ if (false) {(function () {
                 label: item.community_name
               });
             }) : [];
-            //console.log(that.NeedList);
             // that.auditList = that.ComList
           } else {
             console.error('请求成功但数据获取失败:', res);

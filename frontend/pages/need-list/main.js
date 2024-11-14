@@ -203,7 +203,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log(res.data);
             var data = res.data;
             var deList = [];
             for (var i = 0; i < data.length; i++) {
@@ -213,11 +212,8 @@ if (false) {(function () {
               obj.post_time = obj.post_time.replace('T', ' ');
               deList.push(obj);
             }
-            //console.log(deList);
             that.demand_list = deList;
             that.onImgReq();
-            //console.log(that.demand_list);
-            //console.log('22222222');
           }
         }
       });
@@ -236,8 +232,6 @@ if (false) {(function () {
             img: results[index]
           });
         });
-        //console.log(_this.demand_list);
-        //console.log('-------');
       }).catch(function (error) {
         console.error('Error fetching image data:', error);
       });
@@ -273,7 +267,6 @@ if (false) {(function () {
       var need = this.demand_list.find(function (item) {
         return item.need_id === NeedId;
       });
-      //console.log(need);
       if (need.is_pass === '审核中') {
         this.showWarningToast('无法查看/修改审核中的需求！');
         return;

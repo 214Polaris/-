@@ -49,7 +49,7 @@ Page({
       wx.request({
         url: 'http://120.78.1.231:8084/api/get/coordinate?city='+city,
         success(res) {
-          //console.log("请求成功")
+
           that.setData({
             pointData: res.data.map(item => ({
               longitude: item.longitude,
@@ -57,8 +57,6 @@ Page({
               address:item.address
             }))
           });
-          //console.log(res.data)
-          //console.log(that.data.pointData)
           //要写在这否则会先执行同步的，外面的还没根据请求更新marker
           const markers = that.data.pointData.map(city => ({
             longitude: city.longitude,

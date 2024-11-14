@@ -292,17 +292,13 @@ if (false) {(function () {
     };
   },
   onLoad: function onLoad(options) {
-    console.log(options.Needid);
     this.fetchShowData(options.Needid); // 根据options.Name去找对应的show中的数据后端接口！
     this.NeedID = options.Needid;
   },
 
   methods: {
     onChange: function onChange(e) {
-      // console.log('change')
-      // console.log(e.target.current)
       this.show.imageCurrent = e.target.current;
-      console.log(this.show.imageCurrent);
     },
     Agree: function Agree() {
       // 调用后端审核成功接口！
@@ -408,7 +404,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            console.log('数据获取成功:', res.data);
             that.show = res.data;
             that.show.belong = that.ComName;
             that.uid = res.data.user_id;
@@ -420,7 +415,6 @@ if (false) {(function () {
               },
               success: function success(res) {
                 if (res.statusCode === 200) {
-                  console.log('数据获取成功:', res.data);
                   that.ComName = res.data.name;
                   that.Phone = res.data.phone_number;
                 } else {

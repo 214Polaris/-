@@ -212,18 +212,13 @@ if (false) {(function () {
   methods: {
     onChange: function onChange(e) {
       this.product.value = e.target.value;
-      //console.log('选择需求', this.product.value);
       this.project_id = this.product.value;
     },
     changePosition: function changePosition(e) {
       this.position = e.target.value;
     },
     uploadFile: function uploadFile(fileObj, isCover, CoverID, ReturnID) {
-      //console.log('上传文件:', fileObj);
       var token = wx.getStorageSync('token');
-      //console.log(isCover);
-      //console.log(ReturnID);
-      //console.log(CoverID);
       if (isCover === 1) {
         wx.uploadFile({
           url: 'http://120.78.1.231:8084/api/media/modify/image',
@@ -241,7 +236,6 @@ if (false) {(function () {
           },
           success: function success(res) {
             if (res.statusCode === 200) {
-              //console.log('上传封面成功', res);
             } else {
               console.error('上传封面失败', res.data);
             }
@@ -267,7 +261,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('上传图片成功', res);
           } else {
             console.error('上传图片失败', res.data);
           }
@@ -278,7 +271,6 @@ if (false) {(function () {
       });
     },
     Agree: function Agree() {
-      //console.log('111');
       var token = wx.getStorageSync('token');
       var that = this;
       wx.request({
@@ -296,11 +288,8 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('发布成果成功', res);
             var Mid = res.data.media_id || res.data.Media_id;
             var id = res.data.id || res.data.Id;
-            //console.log('新成果ID:', id);
-            //console.log(that.originFiles);
             var uploadTasks = that.originFiles.filter(function (file) {
               return !file.type.includes('video');
             }).map(function (file, index) {
@@ -353,8 +342,6 @@ if (false) {(function () {
       });
     },
     uploadVideo: function uploadVideo(filePath, ReturnID) {
-      //console.log(filePath);
-      //console.log('上传视频:', filePath);
       var that = this;
       var token = wx.getStorageSync('token');
       wx.uploadFile({
@@ -372,7 +359,6 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('上传视频成功', res);
             that.showSuccessToast('已完成');
           } else {
             console.error('上传视频失败', res.data);
@@ -391,14 +377,11 @@ if (false) {(function () {
       this.title = e.target.value;
     },
     handleSuccess: function handleSuccess(e) {
-      //console.log('success');
-      //console.log(this.originFiles);
     },
     handleRemove: function handleRemove(e) {
       this.originFiles.splice(e.target.index, 1);
     },
     handleAdd: function handleAdd(e) {
-      //console.log(e.target.files[0]);
       this.originFiles.push({
         url: e.target.files[0].url,
         name: e.target.files[0].name,
@@ -412,7 +395,6 @@ if (false) {(function () {
         name: file.name,
         type: file.type
       });
-      //console.log(this.VideoFiles);
     },
     handleRemoveVideo: function handleRemoveVideo(e) {
       this.VideoFiles.splice(e.target.index, 1);
@@ -420,7 +402,6 @@ if (false) {(function () {
     fetchShowData: function fetchShowData() {
       var token = wx.getStorageSync('token');
       var that = this;
-      //console.log(token);
       wx.request({
         url: 'http://120.78.1.231:8084/api/need/team_paired',
         method: 'GET',
@@ -429,14 +410,12 @@ if (false) {(function () {
         },
         success: function success(res) {
           if (res.statusCode === 200) {
-            //console.log('数据获取成功:', res.data);
             that.product = {
               value: 1,
               options: res.data.map(function (need) {
                 return { value: need.needID, label: need.needName };
               })
             };
-            //console.log(that.product);
           }
         },
         fail: function fail(error) {

@@ -25,7 +25,6 @@ Page({
     this.setData({
       class: e.detail,
     });
-    //console.log(this.data.class)
   },
   Updatestag(e) {
     this.setData({
@@ -48,7 +47,6 @@ Page({
           'Upgrade': 'h2c'
         },
         success(res) {
-          //console.log("请求成功")
           // 返回的内容为空的话执行replace会有问题
           const list = res.data.map(item => {
             return {
@@ -59,12 +57,10 @@ Page({
               tags: item.tags
             };
           });
-          //console.log(list);
           // 这里可以对返回的数据进行后续操作，比如渲染到页面上
           scollOneComponent.setData({
             teamed_list: list
           });
-          //console.log("触发");
         },
         fail(error) {
           console.error('请求失败', error);
@@ -100,11 +96,11 @@ Page({
         })
       } else if(uc === 'community') {
         wx.redirectTo({
-          url: `/pages/home_c/main?FirstLogin=0&Com=${wx.getStorageSync('Com')}&userName=${wx.getStorageSync('userName')}&Name=${wx.getStorageSync('Name')}&head=${wx.getStorageSync('head')}`
+          url: `/pages/home-com/main?FirstLogin=0&Com=${wx.getStorageSync('Com')}&userName=${wx.getStorageSync('userName')}&Name=${wx.getStorageSync('Name')}&head=${wx.getStorageSync('head')}`
         })
       } else {
         wx.redirectTo({
-          url: `/pages/home_sl/main?Team=${wx.getStorageSync('Team')}&userName=${wx.getStorageSync('userName')}&Name=${wx.getStorageSync('Name')}&Isleader=${wx.getStorageSync('Isleader')}&head=${wx.getStorageSync('head')}`
+          url: `/pages/home-uni/main?Team=${wx.getStorageSync('Team')}&userName=${wx.getStorageSync('userName')}&Name=${wx.getStorageSync('Name')}&Isleader=${wx.getStorageSync('Isleader')}&head=${wx.getStorageSync('head')}`
         })
       }
     }
