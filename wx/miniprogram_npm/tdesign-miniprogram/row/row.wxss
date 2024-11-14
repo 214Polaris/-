@@ -1,5 +1,0 @@
-.t-row {
-  display: flex;
-  flex-flow: row;
-  box-sizing: border-box;
-}

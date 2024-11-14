@@ -1,3 +1,0 @@
-<view class="example-search">
-  <t-search model:value="{{value}}" center placeholder="搜索需求、示范项目" disabled="{{true}}" bind:tap="onChange" />
-</view>
