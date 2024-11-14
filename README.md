@@ -46,4 +46,4 @@ A big shout out to all the contributers, more specifically to these guys
 if port 3306 is occupied, run the command below:
 
 `netstat -ano | findstr :3306`
-`taskkill /PID {对应进程号} /F`
+`taskkill /PID (i.e., process id) /F`
