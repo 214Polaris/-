@@ -2,7 +2,11 @@
 
 ![](https://img.shields.io/badge/Star-8-yellow) ![](https://img.shields.io/badge/SpringBoot-3.2.5-red) ![](https://img.shields.io/badge/MyBatis-3.0.3-orange) ![](https://img.shields.io/badge/WeChatDeveloperTool-Stable-green) ![](https://img.shields.io/badge/TDesign-Stable-blue)
 
-This project is a backend service repository based on Java and Spring Boot, focused on providing demand-matching functionality between communities and university task forces.
+This project is a mini-app focused on providing demand-matching functionality between communities and university task forces.
+
+- The frontend development was completed with WeChatDeveloperTool with TDesign UI component library.
+
+- The backend service repository is based on Java and Spring Boot.
 
 ## Screenshot
 
@@ -43,7 +47,7 @@ A big shout out to all the contributers, more specifically to these guys
 - [Fcat003](https://github.com/Fcat003)
 
 ## Notes
-if port 3306 is occupied, run the command below:
+If port 3306 is occupied, run the command below:
 
 `netstat -ano | findstr :3306`
 `taskkill /PID (i.e., process id) /F`
