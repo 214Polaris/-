@@ -54,8 +54,8 @@ if (Component.options.functional) {console.error("[vue-loader] index.vue: functi
 
 /* hot reload */
 if (false) {(function () {
-  var hotAPI = require("../notification-uni/node_modules/vue-hot-reload-api")
-  hotAPI.install(require("../notification-uni/node_modules/vue"), false)
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
